@@ -1,0 +1,16 @@
+language: bash
+services: docker
+env:
+  - VERSION=3.6 VARIANT=alpine
+  - VERSION=3.7 VARIANT=alpine
+before_script:
+  - env | sort
+  - cd "$VERSION"
+  - dockerImage="easynetq/rabbitmq:$VERSION${VARIANT:+-$VARIANT}"
+script:
+  - travis_retry docker build --pull -t "$dockerImage" "${VARIANT:-.}"
+after_script:
+  - docker image ls --format "table {{.ID}}\t{{.Tag}}\t{{.CreatedSince}}\t{{.Size}}"
+  - if [[ "${TRAVIS_TAG}" != "" ]]; then docker login -u="$DOCKER_USER" -p="$DOCKER_PASS" >/dev/null 2>&1; docker push "$dockerImage"; fi
+notifications:
+  email: false
