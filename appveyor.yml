@@ -1,0 +1,22 @@
+version: BUILD {build}
+image: Visual Studio 2017
+environment:
+  DOCKER_USER:
+    secure: x5zDJlkInxtBKEAkE9t2OQ==
+  DOCKER_PASS:
+    secure: AgTJdRnxbXBY+YT1i0BHmQ==
+  matrix:
+    - version: 3.6
+      variant: windowsservercore-ltsc2016
+    - version: 3.7
+      variant: windowsservercore-ltsc2016
+install:
+  - ps: |
+      [Environment]::SetEnvironmentVariable('dockerImage', ('easynetq/rabbitmq:{0}-{1}' -f $env:version, $env:variant), [EnvironmentVariableTarget]::Process);
+      [Environment]::SetEnvironmentVariable('buildDirectory', ('{0}/{1}' -f $env:version, $env:variant), [EnvironmentVariableTarget]::Process);
+build_script:
+  - cmd: appveyor-retry docker build -t %dockerImage% %buildDirectory%
+after_build:
+  - cmd: docker image ls --format "table {{.ID}}\t{{.Tag}}\t{{.CreatedSince}}\t{{.Size}}"
+deploy_script:
+  - ps: if ($env:APPVEYOR_REPO_TAG -eq $true) { docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"; docker push "$env:dockerImage" }
