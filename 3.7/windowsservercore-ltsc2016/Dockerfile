@@ -2,7 +2,7 @@ FROM microsoft/windowsservercore@sha256:c06b4bfaf634215ea194e6005450740f3a230b27
 
 ENV ERLANG_HOME="c:\erlang" \
     ERLANG_VERSION="20.3" \
-    RABBITMQ_VERSION="3.7.5" \
+    RABBITMQ_VERSION="3.7.6" \
     RABBITMQ_BASE="c:\rabbitmq" \
     RABBITMQ_CONFIG_FILE="c:\rabbitmq\rmqsettings"
 
