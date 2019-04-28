@@ -4,7 +4,7 @@ environment:
   DOCKER_USER:
     secure: x5zDJlkInxtBKEAkE9t2OQ==
   DOCKER_PASS:
-    secure: AgTJdRnxbXBY+YT1i0BHmQ==
+    secure: PjSxpWZ2vyGMQ1ONG5uiyg==
   matrix:
     - version: 3.6
       variant: windowsservercore-ltsc2016
