@@ -24,7 +24,7 @@ RUN $erlangInstaller = Join-Path -Path $env:Temp -ChildPath 'otp_win64.exe'; \
     Remove-Item -Force -Path C:\rabbitmq\*.txt; \
     $utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False; \
     [System.IO.File]::WriteAllText('C:\rabbitmq\rmqsettings.config', '[{rabbit,[{loopback_users, []}]}].', $utf8NoBomEncoding); \
-    Invoke-WebRequest -UseBasicParsing -Uri "https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases/download/v3.8.0/rabbitmq_delayed_message_exchange-3.8.0.ez" -OutFile "C:\rabbitmqplugins/rabbitmq_delayed_message_exchange-3.8.0.ez"; \
+    Invoke-WebRequest -UseBasicParsing -Uri "https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases/download/v3.8.0/rabbitmq_delayed_message_exchange-3.8.0.ez" -OutFile "C:\rabbitmq\plugins\rabbitmq_delayed_message_exchange-3.8.0.ez"; \
     C:\rabbitmq\sbin\rabbitmq-plugins.bat enable --offline rabbitmq_management rabbitmq_federation rabbitmq_federation_management rabbitmq_delayed_message_exchange
 
 CMD c:\rabbitmq\sbin\rabbitmq-server.bat

@@ -2,7 +2,7 @@ Vagrant.configure("2") do |config|
   config.winrm.host = "127.0.0.1"
   config.winrm.username = "vagrant"
   config.winrm.password = "vagrant"
-  config.vm.box = "symbols/windows_2016_core"
+  config.vm.box = "symbols/windows_2019_core"
   config.vm.box_check_update = false
   config.vm.hostname = "docker-windows"
   config.vm.network :forwarded_port, id: 'winrm', guest: 5985, host: 2201, auto_correct: false
