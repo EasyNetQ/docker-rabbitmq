@@ -1,15 +1,15 @@
 version: BUILD {build}
-image: Visual Studio 2017
+image: Visual Studio 2019
 environment:
   DOCKER_USER:
     secure: x5zDJlkInxtBKEAkE9t2OQ==
   DOCKER_PASS:
     secure: PjSxpWZ2vyGMQ1ONG5uiyg==
   matrix:
-    - version: 3.6
-      variant: windowsservercore-ltsc2016
     - version: 3.7
-      variant: windowsservercore-ltsc2016
+      variant: windowsservercore-ltsc2019
+    - version: 3.8
+      variant: windowsservercore-ltsc2019
 install:
   - ps: |
       [Environment]::SetEnvironmentVariable('dockerImage', ('easynetq/rabbitmq:{0}-{1}' -f $env:version, $env:variant), [EnvironmentVariableTarget]::Process);
