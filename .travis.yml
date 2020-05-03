@@ -1,8 +1,8 @@
 language: bash
 services: docker
 env:
-  - VERSION=3.6 VARIANT=alpine
   - VERSION=3.7 VARIANT=alpine
+  - VERSION=3.8 VARIANT=alpine
 before_script:
   - env | sort
   - cd "$VERSION"

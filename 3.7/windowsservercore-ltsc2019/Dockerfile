@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/windows/servercore:ltsc2016
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 ENV ERLANG_HOME="c:\erlang" \
     ERLANG_VERSION="21.3" \
